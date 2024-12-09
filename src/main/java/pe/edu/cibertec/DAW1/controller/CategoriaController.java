@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/categoria")
-public class MaintenanceController {
+public class CategoriaController {
 
     @Autowired
     CategoriaService categoriaService;
