@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Proveedor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="mt-3 mb-3">
+        <h3>Detalle de Proveedor</h3>
+    </div>
+
+    <!-- Verificar si el proveedor existe -->
+    <form th:object="${proveedor}">
+
+        <div class="mb-3 row">
+            <label for="IdProveedor" class="col-sm-3">Código de Proveedor</label>
+            <div class="col-sm-9">
+                <input type="text" id="IdProveedor" readonly="readonly" class="form-control" th:field="*{IdProveedor}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="Nombre" class="col-sm-3">Nombre</label>
+            <div class="col-sm-9">
+                <input type="text" id="Nombre" readonly="readonly" class="form-control" th:field="*{Nombre}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="Telefono" class="col-sm-3">Teléfono</label>
+            <div class="col-sm-9">
+                <input type="text" id="Telefono" readonly="readonly" class="form-control" th:field="*{Telefono}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="Email" class="col-sm-3">Correo Electrónico</label>
+            <div class="col-sm-9">
+                <input type="email" id="Email" readonly="readonly" class="form-control" th:field="*{Email}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="Direccion" class="col-sm-3">Dirección</label>
+            <div class="col-sm-9">
+                <input type="text" id="Direccion" readonly="readonly" class="form-control" th:field="*{Direccion}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="FechaRegistro" class="col-sm-3">Fecha de Registro</label>
+            <div class="col-sm-9">
+                <input type="text" id="FechaRegistro" readonly="readonly" class="form-control" th:field="*{FechaRegistro}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="btnReturn" class="col-sm-3"></label>
+            <div class="col-sm-9">
+                <button type="button" id="btnReturn" class="btn btn-primary w-25" onclick="location.href='/proveedor/listado'">Regresar</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
