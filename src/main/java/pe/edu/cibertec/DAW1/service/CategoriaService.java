@@ -17,5 +17,7 @@ public interface CategoriaService {
 
     CategoriaDetailDto createCategoria(CategoriaDetailDto categoriaDetailDto);
 
+    List<CategoriaDto> searchCategoriasByNombre(String nombre);
+
 
 }

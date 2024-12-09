@@ -95,5 +95,20 @@ public class CategoriaServiceImpl implements CategoriaService {
                 savedCategoria.getFechaRegistro()
         );
     }
+    @Override
+    public List<CategoriaDto> searchCategoriasByNombre(String nombre) {
+        List<Categoria> categorias = categoriaRepository.findByNombreCategoriaContaining(nombre);
+        List<CategoriaDto> categoriasDto = new ArrayList<>();
 
+        for (Categoria categoria : categorias) {
+            categoriasDto.add(new CategoriaDto(
+                    categoria.getIdCategoria(),
+                    categoria.getNombreCategoria(),
+                    categoria.getDescripcion(),
+                    categoria.getFechaRegistro()
+            ));
+        }
+
+        return categoriasDto;
+    }
 }

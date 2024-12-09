@@ -65,6 +65,15 @@
         <a href="/categoria/create" class="btn btn-success">+ Nueva Categoría</a>
     </div>
 
+    <!-- Buscador -->
+    <form th:action="@{/categoria/listado}" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="nombre" class="form-control" placeholder="Buscar categoría por nombre"
+                   th:value="${nombreBusqueda}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
     <!-- Tabla -->
     <div class="table-responsive shadow-sm rounded">
         <table class="table table-bordered table-hover">

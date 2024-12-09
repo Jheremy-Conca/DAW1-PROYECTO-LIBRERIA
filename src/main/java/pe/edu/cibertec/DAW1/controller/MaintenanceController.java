@@ -19,11 +19,18 @@ public class MaintenanceController {
     CategoriaService categoriaService;
 
     @GetMapping("/listado")
-    public String start(Model model) {
-        List<CategoriaDto> films = categoriaService.getAllCategorias();
-        model.addAttribute("categorias", films);
+    public String start(@RequestParam(value = "nombre", required = false) String nombre, Model model) {
+        List<CategoriaDto> categorias;
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            categorias = categoriaService.searchCategoriasByNombre(nombre);
+        } else {
+            categorias = categoriaService.getAllCategorias();
+        }
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("nombreBusqueda", nombre);
         return "categoria";
     }
+
 
     @GetMapping("/detail/{id}")
     public String detail(@PathVariable Integer id, Model model) {
