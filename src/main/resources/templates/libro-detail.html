@@ -97,6 +97,31 @@
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index/home">Menú</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/index/home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categoria/listado">Categorías</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proveedor/listado">Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/libro">Libros</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
     <div class="mt-3 mb-3">
@@ -108,75 +133,85 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="mb-3 row">
-                    <label for="IdLibro" class="col-sm-5 col-form-label">Código de Libro</label>
+                    <label for="idLibro" class="col-sm-5 col-form-label">Código de Libro</label>
                     <div class="col-sm-7">
-                        <input type="text" id="IdLibro" readonly="readonly" class="form-control" th:field="*{IdLibro}">
+                        <input type="text" id="idLibro" readonly="readonly" class="form-control" th:field="*{idLibro}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="Titulo" class="col-sm-5 col-form-label">Título</label>
+                    <label for="titulo" class="col-sm-5 col-form-label">Título</label>
                     <div class="col-sm-7">
-                        <input type="text" id="Titulo" readonly="readonly" class="form-control" th:field="*{Titulo}">
+                        <input type="text" id="titulo" readonly="readonly" class="form-control" th:field="*{titulo}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="Autor" class="col-sm-5 col-form-label">Autor</label>
+                    <label for="autor" class="col-sm-5 col-form-label">Autor</label>
                     <div class="col-sm-7">
-                        <input type="text" id="Autor" readonly="readonly" class="form-control" th:field="*{Autor}">
+                        <input type="text" id="autor" readonly="readonly" class="form-control" th:field="*{autor}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="Genero" class="col-sm-5 col-form-label">Genero</label>
+                    <label for="genero" class="col-sm-5 col-form-label">Genero</label>
                     <div class="col-sm-7">
-                        <input type="text" id="Genero" readonly="readonly" class="form-control" th:field="*{Genero}">
+                        <input type="text" id="genero" readonly="readonly" class="form-control" th:field="*{genero}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="NombreProveedor" class="col-sm-5 col-form-label">Proveedor</label>
+                    <label for="proveedor" class="col-sm-5 col-form-label">Proveedor</label>
                     <div class="col-sm-7">
-                        <input type="text" id="NombreProveedor" readonly="readonly" class="form-control" th:field="*{NombreProveedor}">
+                        <input type="text" id="proveedor" readonly="readonly" class="form-control" th:value="${libro.proveedor.nombre}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="NombreCategoria" class="col-sm-5 col-form-label">Categoria</label>
+                    <label for="categoria" class="col-sm-5 col-form-label">Categoría</label>
                     <div class="col-sm-7">
-                        <input type="text" id="NombreCategoria" readonly="readonly" class="form-control" th:field="*{NombreCategoria}">
+                        <input type="text" id="categoria" readonly="readonly" class="form-control" th:value="${libro.categoria.nombreCategoria}">
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="precio" class="col-sm-5 col-form-label">Precio</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="precio" readonly="readonly" class="form-control" th:field="*{precio}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="Precio" class="col-sm-5 col-form-label">Precio</label>
+                    <label for="stock" class="col-sm-5 col-form-label">Stock</label>
                     <div class="col-sm-7">
-                        <input type="text" id="Precio" readonly="readonly" class="form-control" th:field="*{Precio}">
+                        <input type="text" id="stock" readonly="readonly" class="form-control" th:field="*{stock}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="Stock" class="col-sm-5 col-form-label">Stock</label>
+                    <label for="estado" class="col-sm-5 col-form-label">Estado</label>
                     <div class="col-sm-7">
-                        <input type="text" id="Stock" readonly="readonly" class="form-control" th:field="*{Stock}">
+                        <input type="text" id="estado" readonly="readonly" class="form-control" th:field="*{estado}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="Estado" class="col-sm-5 col-form-label">Estado</label>
+                    <label for="anoPublicacion" class="col-sm-5 col-form-label">Año de Publicacion</label>
                     <div class="col-sm-7">
-                        <input type="text" id="Estado" readonly="readonly" class="form-control" th:field="*{Estado}">
+                        <input type="text" id="anoPublicacion" readonly="readonly" class="form-control" th:field="*{anoPublicacion}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="AnoPublicacion" class="col-sm-5 col-form-label">Año de Publicacion</label>
+                    <label for="fechaRegistro" class="col-sm-5 col-form-label">Fecha de Registro</label>
                     <div class="col-sm-7">
-                        <input type="text" id="AnoPublicacion" readonly="readonly" class="form-control" th:field="*{AnoPublicacion}">
+                        <input type="text" id="fechaRegistro" readonly="readonly" class="form-control" th:field="*{fechaRegistro}">
                     </div>
                 </div>
             </div>
 
             <!-- Sección derecha (Imagen) -->
             <div class="col-sm-6 img-container">
-                <img th:src="@{/img/{ImagenURL}(ImagenURL=${libro.ImagenURL})}" alt="Imagen del libro" class="img-fluid" style="max-width: 80%; height: auto;">
+                <img th:if="${libro.imagenurl != null}"
+                     class="rounded" style="max-width: 50%;"
+                     th:src="@{'/libro/uploads/' + ${libro.imagenurl}}" alt="Imagen del libro no disponible"/>
             </div>
+
         </div>
 
         <div class="card-footer">
-            <a href="/libro/listado" class="btn btn-back">Volver</a>
+            <a href="/libro" class="btn btn-back">Volver</a>
         </div>
 
     </form>

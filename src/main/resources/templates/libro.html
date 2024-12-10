@@ -10,6 +10,7 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
         }
 
         .container {
@@ -41,10 +42,6 @@
             border-radius: 20px;
         }
 
-        .action-buttons button {
-            border-radius: 12px;
-        }
-
         .table-dark th {
             background-color: #343a40;
             color: white;
@@ -53,26 +50,61 @@
         .table-hover tbody tr:hover {
             background-color: #f1f1f1;
         }
+
+        .header-title {
+            font-weight: bold;
+            color: #4e73df;
+        }
+
+        .no-data {
+            color: #6c757d;
+            font-style: italic;
+        }
     </style>
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index/home">Menú</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/index/home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categoria/listado">Categorías</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proveedor/listado">Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/libro">Libros</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container mt-5">
     <!-- Encabezado -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-primary">Mantenimiento de Libros</h3>
-        <a href="/libro/create" class="btn btn-success">Nuevo Libro</a>
+        <h3 class="header-title">Mantenimiento de Libros</h3>
+        <a href="/libro/new" class="btn btn-success">Nuevo Libro</a>
     </div>
 
     <!-- Buscador -->
-    <form th:action="@{/libro/listado}" method="get" class="mb-4">
+    <form th:action="@{/libro}" method="get" class="mb-4">
         <div class="input-group">
-            <input type="text" name="nombre" class="form-control" placeholder="Buscar libro por título o autor"
-                   th:value="${nombreBusqueda}">
+            <input type="text" name="nombre" class="form-control" placeholder="Buscar libro por título o autor" th:value="${nombreBusqueda}">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
     </form>
+
 
     <!-- Tabla -->
     <div class="table-responsive shadow-sm rounded">
@@ -88,34 +120,34 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="libro : ${libros}">
+            <tr th:each="l : ${listlibro}">
+                <!-- Código con enlace al detalle -->
                 <td>
-                    <a th:href="@{/libro/detail/{id}(id=${libro.IdLibro()})}" class="text-decoration-none text-info fw-bold"
-                       th:text="${libro.IdLibro()}"></a>
+                    <a th:href="@{'/libro/detail/' + ${l.idLibro}}"
+                       class="text-decoration-none text-info fw-bold"
+                       th:text="${l.idLibro}"></a>
                 </td>
-                <td th:text="${libro.Titulo()}"></td>
-                <td th:text="${libro.Autor()}"></td>
-                <td th:text="${libro.Precio()}"></td>
-                <td th:text="${libro.Estado()}"></td>
+                <!-- Otros campos -->
+                <td th:text="${l.titulo}"></td>
+                <td th:text="${l.autor}"></td>
+                <td th:text="${l.precio}"></td>
+                <td th:text="${l.estado}"></td>
+                <td>
+                    <a th:href="@{'/libro/update/' + ${l.idLibro}}" class="btn btn-warning btn-sm">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{'/libro/delete/' + ${l.idLibro}}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Está seguro de eliminar este libro?')">Eliminar</a>
+                </td>
+            </tr>
 
-                <td class="text-center">
-                    <a th:href="@{/libro/edit/{id}(id=${libro.IdLibro()})}" class="btn btn-warning btn-sm">
-                        Editar
-                    </a>
-                </td>
-                <td class="text-center">
-                    <form th:action="@{/libro/delete-confirm/{id}(id=${libro.IdLibro()})}" method="post">
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de eliminar este libro?')">
-                            Eliminar
-                        </button>
-                    </form>
-                </td>
-            </tr>
             <!-- Mensaje si no hay datos -->
-            <tr th:if="${#lists.isEmpty(libros)}">
-                <td colspan="8" class="text-center text-muted">No hay libros registrados</td>
+            <tr th:if="${#lists.isEmpty(listlibro)}">
+                <td colspan="8" class="text-center no-data">No hay libros registrados</td>
             </tr>
+
             </tbody>
+
         </table>
     </div>
 </div>

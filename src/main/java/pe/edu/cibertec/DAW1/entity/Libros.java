@@ -40,7 +40,7 @@ public class Libros {
     private Integer Stock;
 
     @Column(nullable = false)
-    private String ImagenURL;
+    private String imagenurl;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime FechaRegistro;
@@ -51,13 +51,15 @@ public class Libros {
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor", nullable = false)
+
     private Proveedores Proveedor;
-    public String getImagenURL() {
-        return ImagenURL;
+
+    public String getImagenurl() {
+        return imagenurl;
     }
 
-    public void setImagenURL(String imagenURL) {
-        ImagenURL = imagenURL;
+    public void setImagenurl(String imagenurl) {
+        this.imagenurl = imagenurl;
     }
 
     public Integer getIdLibro() {
@@ -123,7 +125,6 @@ public class Libros {
     public void setStock(Integer stock) {
         Stock = stock;
     }
-
 
 
     public LocalDateTime getFechaRegistro() {

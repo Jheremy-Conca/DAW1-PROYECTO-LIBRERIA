@@ -9,18 +9,10 @@ import java.util.List;
 
 public interface LibroService {
 
-    List<LibroDto> getAllLibro();
-
-    LibroDetailDto getLibroById(int id);
-
-    Boolean updateLibro(LibroDetailDto libroDetailDto);
-
-    Boolean deleteLibro(int id);
-
-    LibroDetailDto createLibro(LibroDetailDto libroDetailDto);
-
-    List<LibroDto> searchLibroByNombre(String nombre);
-
-
+    void save(Libros libros);
+    List<Libros> listAll();
+    void deleteById(int id);
+    Libros listById(int id);
+    List<Libros> buscarPorTituloOAutor(String nombre);
 
 }
