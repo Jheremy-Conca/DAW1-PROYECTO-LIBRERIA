@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Libro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+
+        .card {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .card-body {
+            background-color: white;
+            padding: 30px;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-control-plaintext {
+            font-size: 1rem;
+            color: #495057;
+        }
+
+        .btn-back {
+            border-radius: 25px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .img-container {
+            text-align: center;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 30px;
+            }
+
+            .card-header {
+                font-size: 1.25rem;
+            }
+
+            .img-fluid {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="mt-3 mb-3">
+        <h3>Detalle de Libro</h3>
+    </div>
+    <form th:object="${libro}">
+
+        <!-- Sección izquierda (IdLibro hasta AnoPublicacion) -->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-3 row">
+                    <label for="IdLibro" class="col-sm-5 col-form-label">Código de Libro</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="IdLibro" readonly="readonly" class="form-control" th:field="*{IdLibro}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Titulo" class="col-sm-5 col-form-label">Título</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="Titulo" readonly="readonly" class="form-control" th:field="*{Titulo}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Autor" class="col-sm-5 col-form-label">Autor</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="Autor" readonly="readonly" class="form-control" th:field="*{Autor}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Genero" class="col-sm-5 col-form-label">Genero</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="Genero" readonly="readonly" class="form-control" th:field="*{Genero}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="NombreProveedor" class="col-sm-5 col-form-label">Proveedor</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="NombreProveedor" readonly="readonly" class="form-control" th:field="*{NombreProveedor}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="NombreCategoria" class="col-sm-5 col-form-label">Categoria</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="NombreCategoria" readonly="readonly" class="form-control" th:field="*{NombreCategoria}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Precio" class="col-sm-5 col-form-label">Precio</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="Precio" readonly="readonly" class="form-control" th:field="*{Precio}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Stock" class="col-sm-5 col-form-label">Stock</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="Stock" readonly="readonly" class="form-control" th:field="*{Stock}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="Estado" class="col-sm-5 col-form-label">Estado</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="Estado" readonly="readonly" class="form-control" th:field="*{Estado}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="AnoPublicacion" class="col-sm-5 col-form-label">Año de Publicacion</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="AnoPublicacion" readonly="readonly" class="form-control" th:field="*{AnoPublicacion}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección derecha (Imagen) -->
+            <div class="col-sm-6 img-container">
+                <img th:src="@{/img/{ImagenURL}(ImagenURL=${libro.ImagenURL})}" alt="Imagen del libro" class="img-fluid" style="max-width: 80%; height: auto;">
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <a href="/libro/listado" class="btn btn-back">Volver</a>
+        </div>
+
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoA6bJTGJ/6cwWPhzCkrtDCQC39jF5lJmUHmELB0EGqICa9" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

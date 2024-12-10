@@ -7,5 +7,4 @@ public record CategoriaDetailDto(Integer IdCategoria,
                                  String Descripcion,
                                  LocalDateTime FechaRegistro) {
 
-
 }

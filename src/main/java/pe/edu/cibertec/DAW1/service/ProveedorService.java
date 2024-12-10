@@ -6,6 +6,7 @@ import pe.edu.cibertec.DAW1.dto.ProveedorDto;
 import java.util.List;
 
 public interface ProveedorService {
+
     List<ProveedorDto> getAllProveedor();
 
     ProveedorDetailDto getProveedorById(int id);
@@ -15,6 +16,7 @@ public interface ProveedorService {
     Boolean deleteProveedor(int id);
 
     ProveedorDetailDto createProveedor(ProveedorDetailDto proveedorDetailDto);
+
     List<ProveedorDto> searchProveedoresByNombre(String nombre);
 
 
