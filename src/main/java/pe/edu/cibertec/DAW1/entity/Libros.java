@@ -46,7 +46,7 @@ public class Libros {
     private LocalDateTime FechaRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "IdCategoria", nullable = false)
+    @JoinColumn(name = "id_categoria", nullable = false) // nullable = false ensures a category is required
     private Categoria Categoria;
 
     @ManyToOne
@@ -54,102 +54,7 @@ public class Libros {
 
     private Proveedores Proveedor;
 
-    public String getImagenurl() {
-        return imagenurl;
-    }
 
-    public void setImagenurl(String imagenurl) {
-        this.imagenurl = imagenurl;
-    }
-
-    public Integer getIdLibro() {
-        return IdLibro;
-    }
-
-    public void setIdLibro(Integer idLibro) {
-        IdLibro = idLibro;
-    }
-
-    public String getTitulo() {
-        return Titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        Titulo = titulo;
-    }
-
-    public String getAutor() {
-        return Autor;
-    }
-
-    public void setAutor(String autor) {
-        Autor = autor;
-    }
-
-    public String getGenero() {
-        return Genero;
-    }
-
-    public void setGenero(String genero) {
-        Genero = genero;
-    }
-
-    public Double getPrecio() {
-        return Precio;
-    }
-
-    public void setPrecio(Double precio) {
-        Precio = precio;
-    }
-
-    public String getEstado() {
-        return Estado;
-    }
-
-    public void setEstado(String estado) {
-        Estado = estado;
-    }
-
-    public Integer getAnoPublicacion() {
-        return AnoPublicacion;
-    }
-
-    public void setAnoPublicacion(Integer anoPublicacion) {
-        AnoPublicacion = anoPublicacion;
-    }
-
-    public Integer getStock() {
-        return Stock;
-    }
-
-    public void setStock(Integer stock) {
-        Stock = stock;
-    }
-
-
-    public LocalDateTime getFechaRegistro() {
-        return FechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        FechaRegistro = fechaRegistro;
-    }
-
-    public pe.edu.cibertec.DAW1.entity.Categoria getCategoria() {
-        return Categoria;
-    }
-
-    public void setCategoria(pe.edu.cibertec.DAW1.entity.Categoria categoria) {
-        Categoria = categoria;
-    }
-
-    public Proveedores getProveedor() {
-        return Proveedor;
-    }
-
-    public void setProveedor(Proveedores proveedor) {
-        Proveedor = proveedor;
-    }
 }
 
 

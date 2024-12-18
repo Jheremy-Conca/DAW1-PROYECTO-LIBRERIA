@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Libro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="file"] {
+            font-size: 1rem;
+        }
+
+        .form-group select {
+            font-size: 1rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .d-flex {
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index/home">Menú</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/index/home">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categoria/listado">Categorías</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/proveedor/listado">Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/libro">Libros</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header text-center">
+            <h3>Editar Libro</h3>
+        </div>
+        <div class="card-body">
+            <form th:object="${libro}" th:action="@{/libro/update-confirm}" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="IdLibro" class="form-label">Id Libro:</label>
+                            <input type="number" th:field="*{IdLibro}" class="form-control" id="IdLibro" required readonly/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="Precio" class="form-label">Precio:</label>
+                            <input type="number" th:field="*{Precio}" class="form-control" id="Precio" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Stock" class="form-label">Stock:</label>
+                    <input type="number" th:field="*{Stock}" class="form-control" id="Stock" required/>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="imagen" class="form-label">Imagen:</label>
+                    <input type="file" name="file" class="form-control" th:text="${ImagenURL}" required />
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                    <a href="/libro" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb6A7f6gD/5Fiy2w9pKr4sSTn3P3JgReW9r7PoJ6ciVoFf7jO5" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-cu2Qm4WzVOrwPz9kLs+5qlz3hHbbCK4ly6ti5ml/2yFE6gzqDiAOabPFlpPUlBoO" crossorigin="anonymous"></script>
+</body>
+</html>

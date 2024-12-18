@@ -1,23 +1,28 @@
 package pe.edu.cibertec.DAW1.service;
 
-import pe.edu.cibertec.DAW1.dto.CategoriaDetailDto;
-import pe.edu.cibertec.DAW1.dto.CategoriaDto;
+
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaCreateDto;
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaDto;
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaDetailDto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoriaService {
 
-    List<CategoriaDto> getAllCategorias();
+    List<CategoriaDto> getAllCategorias() throws Exception;
 
-    CategoriaDetailDto getCategoriaById(int id);
+    Optional<CategoriaDetailDto> getDetailCategoria(int id) throws Exception;
 
-    Boolean updateCategoria(CategoriaDetailDto categoriaDetailDto);
+    CategoriaDetailDto getCategoriaById(int id) throws Exception;
 
-    Boolean deleteCategoria(int id);
+    Boolean updateCategoria(CategoriaDetailDto categoriaDetailDto) throws Exception;
 
-    CategoriaDetailDto createCategoria(CategoriaDetailDto categoriaDetailDto);
+    Boolean deleteCategoria(int id)  throws Exception;
 
-    List<CategoriaDto> searchCategoriasByNombre(String nombre);
+    Boolean  createCategoria(CategoriaCreateDto categoriaCreateDto) throws Exception;
+
+    List<CategoriaDto> searchCategoriasByNombre(String nombre) throws Exception;
 
 
 }

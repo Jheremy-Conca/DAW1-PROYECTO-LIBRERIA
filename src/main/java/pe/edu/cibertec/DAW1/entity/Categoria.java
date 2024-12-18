@@ -29,35 +29,5 @@ public class Categoria {
     private LocalDateTime FechaRegistro;
 
 
-    public Integer getIdCategoria() {
-        return IdCategoria;
-    }
 
-    public void setIdCategoria(Integer idCategoria) {
-        IdCategoria = idCategoria;
-    }
-
-    public String getNombreCategoria() {
-        return NombreCategoria;
-    }
-
-    public void setNombreCategoria(String nombreCategoria) {
-        NombreCategoria = nombreCategoria;
-    }
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
-    }
-
-    public LocalDateTime getFechaRegistro() {
-        return FechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        FechaRegistro = fechaRegistro;
-    }
 }

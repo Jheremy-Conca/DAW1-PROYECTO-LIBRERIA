@@ -2,8 +2,10 @@ package pe.edu.cibertec.DAW1.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.cibertec.DAW1.dto.ProveedorDetailDto;
-import pe.edu.cibertec.DAW1.dto.ProveedorDto;
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaDetailDto;
+import pe.edu.cibertec.DAW1.dto.ProveedorDto.ProveedorDetailDto;
+import pe.edu.cibertec.DAW1.dto.ProveedorDto.ProveedorDto;
+import pe.edu.cibertec.DAW1.entity.Categoria;
 import pe.edu.cibertec.DAW1.entity.Proveedores;
 import pe.edu.cibertec.DAW1.repository.ProveedorRepository;
 import pe.edu.cibertec.DAW1.service.ProveedorService;
@@ -19,7 +21,7 @@ public class ProveedorServiceImpl implements ProveedorService {
     private ProveedorRepository proveedorRepository;
 
     @Override
-    public List<ProveedorDto> getAllProveedor() {
+    public List<ProveedorDto> getAllProveedor() throws Exception{
         List<ProveedorDto> proveedoresDto = new ArrayList<>();
         Iterable<Proveedores> iterable = proveedorRepository.findAll();
         iterable.forEach(proveedores -> {
@@ -35,7 +37,17 @@ public class ProveedorServiceImpl implements ProveedorService {
     }
 
     @Override
-    public ProveedorDetailDto getProveedorById(int id) {
+    public Optional<ProveedorDetailDto> getDetailProveedor(int id) throws Exception {
+        Optional<Proveedores> optional =proveedorRepository.findById(id);
+        return optional.map(proveedor -> new ProveedorDetailDto(proveedor.getIdProveedor(),
+                proveedor.getNombre(),
+                proveedor.getTelefono(),
+                proveedor.getEmail(),
+                proveedor.getDireccion(),
+                proveedor.getFechaRegistro()));
+    }
+    @Override
+    public ProveedorDetailDto getProveedorById(int id) throws Exception{
         Optional<Proveedores> optional = proveedorRepository.findById(id);
         return optional.map(proveedores -> new ProveedorDetailDto(
                         proveedores.getIdProveedor(),
@@ -48,7 +60,7 @@ public class ProveedorServiceImpl implements ProveedorService {
     }
 
     @Override
-    public Boolean updateProveedor(ProveedorDetailDto proveedorDetailDto) {
+    public Boolean updateProveedor(ProveedorDetailDto proveedorDetailDto) throws Exception{
         Optional<Proveedores> optional = proveedorRepository.findById(proveedorDetailDto.IdProveedor());
         return optional.map(proveedores -> {
             proveedores.setNombre(proveedorDetailDto.Nombre());
@@ -78,7 +90,7 @@ public class ProveedorServiceImpl implements ProveedorService {
     }
 
     @Override
-    public ProveedorDetailDto createProveedor(ProveedorDetailDto proveedorDetailDto) {
+    public Boolean createProveedor(ProveedorDetailDto proveedorDetailDto) {
         Proveedores proveedores = new Proveedores();
         proveedores.setNombre(proveedorDetailDto.Nombre());
         proveedores.setTelefono(proveedorDetailDto.Telefono());
@@ -94,14 +106,8 @@ public class ProveedorServiceImpl implements ProveedorService {
 
         Proveedores savedProveedor = proveedorRepository.save(proveedores);
 
-        return new ProveedorDetailDto(
-                savedProveedor.getIdProveedor(),
-                savedProveedor.getNombre(),
-                savedProveedor.getTelefono(),
-                savedProveedor.getEmail(),
-                savedProveedor.getDireccion(),
-                savedProveedor.getFechaRegistro()
-        );
+
+        return savedProveedor != null;  // Retorna true si la categoría fue guardada correctamente
     }
 
     @Override

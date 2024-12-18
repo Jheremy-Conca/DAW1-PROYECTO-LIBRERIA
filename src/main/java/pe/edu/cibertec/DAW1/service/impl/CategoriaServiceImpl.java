@@ -2,8 +2,9 @@ package pe.edu.cibertec.DAW1.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.cibertec.DAW1.dto.CategoriaDetailDto;
-import pe.edu.cibertec.DAW1.dto.CategoriaDto;
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaCreateDto;
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaDetailDto;
+import pe.edu.cibertec.DAW1.dto.CategoriaDto.CategoriaDto;
 import pe.edu.cibertec.DAW1.entity.Categoria;
 import pe.edu.cibertec.DAW1.repository.CategoriaRepository;
 import pe.edu.cibertec.DAW1.service.CategoriaService;
@@ -35,6 +36,15 @@ public class CategoriaServiceImpl implements CategoriaService {
             categorias.add(categoriaDto);
         });
         return categorias;
+    }
+
+    @Override
+    public Optional<CategoriaDetailDto> getDetailCategoria(int id)  {
+        Optional<Categoria> optional =categoriaRepository.findById(id);
+        return optional.map(categoria -> new CategoriaDetailDto(categoria.getIdCategoria(),
+                categoria.getNombreCategoria(),
+                categoria.getDescripcion(),
+                categoria.getFechaRegistro()));
     }
 
     @Override
@@ -74,27 +84,23 @@ public class CategoriaServiceImpl implements CategoriaService {
         }).orElse(false);
     }
     @Override
-    public CategoriaDetailDto createCategoria(CategoriaDetailDto categoriaDetailDto) {
+    public Boolean createCategoria(CategoriaCreateDto categoriaCreateDto) {
         Categoria categoria = new Categoria();
-        categoria.setNombreCategoria(categoriaDetailDto.NombreCategoria());
-        categoria.setDescripcion(categoriaDetailDto.Descripcion());
+        categoria.setNombreCategoria(categoriaCreateDto.NombreCategoria());
+        categoria.setDescripcion(categoriaCreateDto.Descripcion());
 
         // Set FechaRegistro to the current date and time if it's not provided in the DTO
-        if (categoriaDetailDto.FechaRegistro() == null) {
+        if (categoriaCreateDto.FechaRegistro() == null) {
             categoria.setFechaRegistro(LocalDateTime.now());
         } else {
-            categoria.setFechaRegistro(categoriaDetailDto.FechaRegistro());
+            categoria.setFechaRegistro(categoriaCreateDto.FechaRegistro());
         }
 
         Categoria savedCategoria = categoriaRepository.save(categoria);
 
-        return new CategoriaDetailDto(
-                savedCategoria.getIdCategoria(),
-                savedCategoria.getNombreCategoria(),
-                savedCategoria.getDescripcion(),
-                savedCategoria.getFechaRegistro()
-        );
+        return savedCategoria != null;  // Retorna true si la categoría fue guardada correctamente
     }
+
     @Override
     public List<CategoriaDto> searchCategoriasByNombre(String nombre) {
         List<Categoria> categorias = categoriaRepository.findByNombreCategoriaContaining(nombre);

@@ -38,4 +38,3 @@ enum Rol {
     ADMINISTRADOR,
     CLIENTE
 }
-
